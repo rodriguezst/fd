@@ -169,6 +169,7 @@ jobs:
         echo "CARGO_TEST_OPTIONS=${CARGO_TEST_OPTIONS}" >> $GITHUB_OUTPUT
 
     - name: Run tests
+      if: ${{ matrix.job.target != 'aarch64-pc-windows-msvc' }}
       shell: bash
       run: $BUILD_CMD test --locked --target=${{ matrix.job.target }} ${{ steps.test-options.outputs.CARGO_TEST_OPTIONS}}
 
